@@ -20,15 +20,33 @@ namespace ToDoBLL
         }
 
         //get all lists
-        public List<todoListInfo> GetTodoListInfos()
+        public List<ToDoShort> getTodoListInfos()
         {
-            return _li.GetTodoListsInfo();
+            return _li.getTodoListsInfo();
+        }
+
+        //get a list by id
+        public List<ToDoListInfo> getTodoListInfo(int id)
+        {
+            return _li.getListById(id);
         }
 
         //Create a new list
-        public void AddList(todoListInfo listPost)
+        public void addList(ToDoListInfo listPost)
         {
-            _li.AddList(listPost);
+            _li.addList(listPost);
+        }
+
+        //Edit a list
+        public void editList(int id, ToDoListInfo listPut)
+        {
+            _li.updateList(id, listPut);
+        }
+
+        //Delete a list
+        public void deleteList(int id)
+        {
+            _li.deleteList(id);
         }
     }
 }

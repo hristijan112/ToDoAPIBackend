@@ -22,14 +22,34 @@ namespace ToDoAPI.Controllers
         {
 
         }
+
+        //get all lists
         [HttpGet]
         [Route("get")]
-        public IHttpActionResult GetListInfo()
+        public IHttpActionResult getListInfo()
         {
             try
             {
-                var result = _liService.GetTodoListInfos();
+                var result = _liService.getTodoListInfos();
                 return Ok(result);
+            }
+            catch (Exception e)
+            {
+                return new System.Web.Http.Results.ResponseMessageResult(
+                            Request.CreateErrorResponse((HttpStatusCode)500,
+                                new HttpError(e.InnerException.Message)));
+            }
+        }
+
+        //get a list by id
+        [HttpGet]
+        [Route("get/{id:int}")]
+        public IHttpActionResult getList(int id)
+        {
+            try
+            {
+                var result = _liService.getTodoListInfo(id);
+                return Ok(result); ;
             }
             catch (Exception e)
             {
@@ -43,11 +63,11 @@ namespace ToDoAPI.Controllers
         [HttpPost]
         [Route("post")]
 
-        public IHttpActionResult PostNewList(todoListInfo listPost)
+        public IHttpActionResult postNewList(ToDoListInfo listPost)
         {
             try
             {
-                _liService.AddList(listPost);
+                _liService.addList(listPost);
                 return Ok();
             }            
             catch (Exception e)
@@ -57,6 +77,43 @@ namespace ToDoAPI.Controllers
                                 new HttpError(e.InnerException.Message)));
             }
         }
-        
+
+
+        //edit a list
+        [HttpPut]
+        [Route("put/{id:int}")]
+        public IHttpActionResult editList(int id, ToDoListInfo listEdit)
+        {
+            try
+            {
+                _liService.editList(id, listEdit);
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                return new System.Web.Http.Results.ResponseMessageResult(
+                            Request.CreateErrorResponse((HttpStatusCode)500,
+                                new HttpError(e.InnerException.Message)));
+            }
+        }
+
+        //delete a list
+        [HttpDelete]
+        [Route("delete/{id:int}")]
+        public IHttpActionResult deleteList(int id)
+        {
+            try
+            {
+                _liService.deleteList(id);
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                return new System.Web.Http.Results.ResponseMessageResult(
+                            Request.CreateErrorResponse((HttpStatusCode)500,
+                                new HttpError(e.InnerException.Message)));
+            }
+        }
+
     }
 }
