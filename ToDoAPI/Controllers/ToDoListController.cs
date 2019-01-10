@@ -38,23 +38,25 @@ namespace ToDoAPI.Controllers
                                 new HttpError(e.InnerException.Message)));
             }
         }
+
+        //Create a new list
+        [HttpPost]
+        [Route("post")]
+
+        public IHttpActionResult PostNewList(todoListInfo listPost)
+        {
+            try
+            {
+                _liService.AddList(listPost);
+                return Ok();
+            }            
+            catch (Exception e)
+            {
+                return new System.Web.Http.Results.ResponseMessageResult(
+                            Request.CreateErrorResponse((HttpStatusCode)500,
+                                new HttpError(e.InnerException.Message)));
+            }
+        }
+        
     }
 }
-//Get all cities
-/*[HttpGet]
-[Route("get")]
-public IHttpActionResult GetCityInfo()
-{
-    try
-    {
-        var result = _evService.GetCityInfo();
-        return Ok(result);
-    }
-    catch (Exception e)
-    {
-        return new System.Web.Http.Results.ResponseMessageResult(
-                    Request.CreateErrorResponse((HttpStatusCode)500,
-                        new HttpError(e.InnerException.InnerException.Message)));
-    }
-}
-*/

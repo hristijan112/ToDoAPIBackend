@@ -24,5 +24,11 @@ namespace ToDoBLL
         {
             return _li.GetTodoListsInfo();
         }
+
+        //Create a new list
+        public void AddList(todoListInfo listPost)
+        {
+            _li.AddList(listPost);
+        }
     }
 }

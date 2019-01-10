@@ -27,5 +27,18 @@ namespace ToDoEF.DataRepository
                 desc = e.desc
             }).ToList();
         }
+
+        //Create a new list
+        public void AddList(todoListInfo listPost)
+        {
+            todo_list_table listAdd = new todo_list_table();
+
+            listAdd.id = 0;
+            listAdd.name = listPost.name;
+            listAdd.desc = listPost.desc;
+
+            _dbContext.todo_list_table.Add(listAdd);
+            _dbContext.SaveChanges();
+        }
     }
 }
