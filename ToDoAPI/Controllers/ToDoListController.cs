@@ -8,10 +8,13 @@ using ToDoBLL;
 using ToDoEF;
 using ToDoEF.DataRepository;
 using ToDoEF.Contracts;
+using System.Web.Http.Cors;
 
 
 namespace ToDoAPI.Controllers
 {
+
+    [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
     [RoutePrefix("api/v1/list")]
     public class ToDoListController : ApiController
     {
