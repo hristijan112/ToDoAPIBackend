@@ -50,7 +50,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contracts\ToDoListInfo.cs" />
-    <Compile Include="Contracts\ToDoShort.cs" />
     <Compile Include="DataAccess\DbAccess.cs" />
     <Compile Include="DataAccess\IDbAccess.cs" />
     <Compile Include="DataRepository\IListRepository.cs" />

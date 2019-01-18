@@ -10,7 +10,7 @@ namespace ToDoEF.DataRepository
 {
     interface IListRepository
     {
-        List<ToDoShort> getTodoListsInfo();
+        List<ToDoListInfo> getTodoListsInfo();
 
         void addList(ToDoListInfo listPost);
 

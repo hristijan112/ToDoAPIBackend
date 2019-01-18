@@ -20,7 +20,7 @@ namespace ToDoBLL
         }
 
         //get all lists
-        public List<ToDoShort> getTodoListInfos()
+        public List<ToDoListInfo> getTodoListInfos()
         {
             return _li.getTodoListsInfo();
         }

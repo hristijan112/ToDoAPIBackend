@@ -18,12 +18,13 @@ namespace ToDoEF.DataRepository
         }
 
         //return all lists
-        public List<ToDoShort> getTodoListsInfo()
+        public List<ToDoListInfo> getTodoListsInfo()
         {
-            return _dbContext.todo_list_table.Select(e => new ToDoShort
+            return _dbContext.todo_list_table.Select(e => new ToDoListInfo
             {
                 id = e.id,
                 name = e.name,
+                desc = e.desc,
             }).ToList();
         }
 
