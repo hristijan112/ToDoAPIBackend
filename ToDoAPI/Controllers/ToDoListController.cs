@@ -44,21 +44,75 @@ namespace ToDoAPI.Controllers
             }
         }
 
+        //get all lists ordered by name ascending
+        [HttpGet]
+        [Route("get/asc")]
+        public IHttpActionResult getListInfoASC()
+        {
+            try
+            {
+                var result = _liService.getToDoListInfosASC();
+                return Ok(result);
+            }
+            catch (Exception e)
+            {
+                return new System.Web.Http.Results.ResponseMessageResult(
+            Request.CreateErrorResponse((HttpStatusCode)500,
+                new HttpError(e.InnerException.Message)));
+            }
+        }
+
+        //get all lists ordered by name descending
+        [HttpGet]
+        [Route("get/desc")]
+        public IHttpActionResult getListInfoDESC()
+        {
+            try
+            {
+                var result = _liService.getToDoListInfosDESC();
+                return Ok(result);
+            }
+            catch(Exception e)
+            {
+                return new System.Web.Http.Results.ResponseMessageResult(
+            Request.CreateErrorResponse((HttpStatusCode)500,
+                new HttpError(e.InnerException.Message)));
+            }
+        }
+
         //get a list by id
         [HttpGet]
-        [Route("get/{id:int}")]
+        [Route("get/id/{id:int}")]
         public IHttpActionResult getList(int id)
         {
             try
             {
                 var result = _liService.getTodoListInfo(id);
-                return Ok(result); ;
+                return Ok(result);
             }
             catch (Exception e)
             {
                 return new System.Web.Http.Results.ResponseMessageResult(
                             Request.CreateErrorResponse((HttpStatusCode)500,
                                 new HttpError(e.InnerException.Message)));
+            }
+        }
+
+        //get a list by name
+        [HttpGet]
+        [Route("get/src/{name}")]
+        public IHttpActionResult getListByName(string name)
+        {
+            try
+            {
+                var result = _liService.getListByName(name);
+                return Ok(result);
+            }
+            catch(Exception e)
+            {
+                return new System.Web.Http.Results.ResponseMessageResult(
+            Request.CreateErrorResponse((HttpStatusCode)500,
+                new HttpError(e.InnerException.Message)));
             }
         }
 

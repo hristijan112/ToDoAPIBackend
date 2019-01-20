@@ -28,10 +28,42 @@ namespace ToDoEF.DataRepository
             }).ToList();
         }
 
+        public List<ToDoListInfo> getTodoListsInfoASC()
+        {
+            return _dbContext.todo_list_table.Select(e => new ToDoListInfo
+            {
+                id = e.id,
+                name = e.name,
+                desc = e.desc,
+            }).OrderBy(e => e.name).ToList();
+        }
+
+        public List<ToDoListInfo> getTodoListsInfoDESC()
+        {
+            return _dbContext.todo_list_table.Select(e => new ToDoListInfo
+            {
+                id = e.id,
+                name = e.name,
+                desc = e.desc,
+            }).OrderByDescending(e => e.name).ToList();
+        }
+
         //Select a list by ID
         public List<ToDoListInfo> getListById(int id)
         {
             return _dbContext.todo_list_table.Where(e => e.id == id).Select(l => new ToDoListInfo
+            {
+                id = l.id,
+                name = l.name,
+                desc = l.desc
+            }).ToList();
+        }
+
+        //Select a list by Name
+        public List<ToDoListInfo> getListByName(string name)
+        {
+
+            return _dbContext.todo_list_table.Where(e => e.name == name && e.name.StartsWith("L")).Select(l => new ToDoListInfo
             {
                 id = l.id,
                 name = l.name,

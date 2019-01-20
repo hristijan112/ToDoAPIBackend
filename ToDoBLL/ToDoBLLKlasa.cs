@@ -25,10 +25,28 @@ namespace ToDoBLL
             return _li.getTodoListsInfo();
         }
 
+        //get all lists ordered by name ascending
+        public List<ToDoListInfo> getToDoListInfosASC()
+        {
+            return _li.getTodoListsInfoASC();
+        }
+
+        //get all lists ordered by name descending
+        public List<ToDoListInfo> getToDoListInfosDESC()
+        {
+            return _li.getTodoListsInfoDESC();
+        }
+
         //get a list by id
         public List<ToDoListInfo> getTodoListInfo(int id)
         {
             return _li.getListById(id);
+        }
+
+        //get a list by name
+        public List<ToDoListInfo> getListByName(string name)
+        {
+            return _li.getListByName(name);
         }
 
         //Create a new list
